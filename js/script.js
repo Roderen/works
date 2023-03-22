@@ -6,7 +6,7 @@ function returnArray(array) {
   if (!array.length) return 'Массив пуст';
 
   for (let i = 0; i < array.length; i++) {
-    if (array[i] >= 1) resultArr.push(array[i]);
+    if (array[i] > 0) resultArr.push(array[i]);
   }
 
   if (!resultArr.length) return null;
