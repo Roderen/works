@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/Roderen/works#readme",
   "dependencies": {
+    "lodash": "^4.17.21",
     "prettier": "^2.8.7"
   },
   "devDependencies": {
