@@ -8,7 +8,7 @@ const numbers = () => {
   }
   return result.join(', ')
 }
-// console.log(numbers())
+console.log(numbers())
 
 // #2
 const squareNumbers = () => {
@@ -18,7 +18,7 @@ const squareNumbers = () => {
   }
   return result.join(', ')
 }
-// console.log(squareNumbers())
+console.log(squareNumbers())
 
 // #3
 const multiTable = () => {
@@ -33,7 +33,7 @@ const multiTable = () => {
   return result;
 };
 
-// console.log(multiTable());
+console.log(multiTable());
 
 // #4
 const sumNumbers = () => {
@@ -43,17 +43,17 @@ const sumNumbers = () => {
   }
   return result;
 };
-// console.log(sumNumbers());
+console.log(sumNumbers());
 
 // #5
-const multiNumbers = (number) => {
+const multiNumbers = () => {
   let result = 1;
-  for (let i = 15; i <= number; i++) {
+  for (let i = 15; i <= 35; i++) {
     result *= i;
   }
   return result;
 };
-// console.log(multiNumbers(35));
+console.log(multiNumbers());
 
 // #6
 const meanNumber = () => {
@@ -63,7 +63,7 @@ const meanNumber = () => {
   }
   return result / 500;
 };
-// console.log(meanNumber());
+console.log(meanNumber());
 
 // #7
 const pairNumber = () => {
@@ -73,7 +73,7 @@ const pairNumber = () => {
   }
   return result;
 };
-// console.log(pairNumber());
+console.log(pairNumber());
 
 // #8
 const multipleNumber = () => {
@@ -83,7 +83,7 @@ const multipleNumber = () => {
   }
   return result;
 };
-// console.log(multipleNumber());
+console.log(multipleNumber());
 
 // #9-11
 const naturalNumber = (number) => {
@@ -106,7 +106,7 @@ const naturalNumber = (number) => {
   Сумма парных детилетей числа: ${sumDivider}
   `;
 };
-// console.log(naturalNumber(6));
+console.log(naturalNumber(6));
 
 // #3
 const multiTableFull = () => {
