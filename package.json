@@ -1,0 +1,27 @@
+{
+  "name": "homeworks",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "eslint-config-airbnb": "^19.0.4",
+    "lodash": "^4.17.21",
+    "prettier": "^2.8.7"
+  },
+  "devDependencies": {
+    "eslint": "^8.38.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Roderen/works.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Roderen/works/issues"
+  },
+  "homepage": "https://github.com/Roderen/works#readme"
+}
