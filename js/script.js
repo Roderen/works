@@ -12,6 +12,7 @@ const user2 = {
   name: "John"
 };
 user2.name = "Pete";
+// Будет работать
 
 
 // #3
