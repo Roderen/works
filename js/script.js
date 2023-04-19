@@ -1,40 +1,56 @@
 "use strict";
 
-const dateOfBirth = parseInt(prompt('Год рождения', '1995'));
-const aboutYou = {};
+let dateOfBirthday = +prompt('Твой год рожднеия?', '2000');
 
-if (dateOfBirth) {
-  aboutYou.date = dateOfBirth;
-  const yourCity = prompt('В каком городе ты живешь?', 'Киев');
+if (dateOfBirthday) {
+  dateOfBirthday = 2023 - dateOfBirthday;
+  let yourCity = prompt('В каком городе ты живешь?', 'Киев');
 
   if (yourCity) {
     switch (yourCity) {
       case 'Киев':
+        yourCity = 'Ты живешь в столице Украины'
+        break
       case 'Москва':
+        yourCity = 'Ты живешь в столице России'
+        break
       case 'Минск':
-        aboutYou.capital = yourCity;
-        break;
+        yourCity = 'Ты живешь в столице Беларуси'
+        break
       default:
-        aboutYou.city = yourCity;
+        yourCity = `Ты живешь в городе ${yourCity}`
+        break
     }
 
-    const typeOfSport = prompt('Твой любимый вид спорта?', 'Теннис');
+    let yourSport = prompt('Твой любимый вид спорта?', 'Футбол');
 
-    switch (typeOfSport) {
-      case 'Теннис':
-      case 'Футбол':
-      case 'Баскетбол':
-        aboutYou.sport = typeOfSport;
+    if (yourSport) {
+      switch (yourSport) {
+        case 'Теннис':
+          yourSport = 'Круто! Ты хочешь стать Рафаэлем Надаль?'
+          break;
+        case 'Футбол':
+          yourSport = 'Круто! Ты хочешь стать Гердом Мюллером?'
+          break;
+        case 'Баскетбол':
+          yourSport = 'Круто! Ты хочешь стать Хогланд Биллом?'
+          break;
+        default:
+          yourSport = 'Твой любимый вид спорта'
+          break;
+      }
 
-        alert();
-
-        break;
-      default:
-        alert(`Ты не захотел вводить свой вид спорта`);
+      alert(`
+      Твой возраст: ${dateOfBirthday}
+      ${yourCity}
+      ${yourSport}
+      `)
+    } else {
+      console.log('Ты не ввел вид спорта');
     }
   } else {
-    alert('Ты не захотел вводить свой город');
+    console.log('Ты не ввел город');
   }
 } else {
-  alert('Ты не захотел вводить год рождения');
+  console.log('Вы ввели неправильную дату');
 }
