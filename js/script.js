@@ -11,7 +11,7 @@
     };
 
     function iterNum(num2) {
-      let reverseNum = +num2.toString().split("").reverse().join("");
+      const reverseNum = +num2.toString().split("").reverse().join("");
 
       if (num2 === reverseNum) {
         palindromeResult.result = num2;
@@ -29,5 +29,5 @@
     return palindromeResult;
   }
 
-  console.log(checkPalindrome(31153));
+  console.log(checkPalindrome(96));
 })();
