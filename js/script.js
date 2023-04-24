@@ -33,5 +33,4 @@
     };
   }
   const result = counter();
-  console.log(result);
 })();
