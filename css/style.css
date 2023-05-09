@@ -1,0 +1,29 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
+  font-size: 26px;
+  font-weight: 300;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  padding: 50px 0;
+}
+
+table {
+  width: auto;
+  height: auto;
+}
+
+tr {
+
+}
+
+td {
+  width: 50px;
+  text-align: center;
+  border: 1px solid gray;
+}
