@@ -18,9 +18,7 @@
       result[select.name] = select.options[select.selectedIndex].text;
     }
 
-    if (checkbox) {
-      if (checkbox.checked) result[checkbox.name] = checkbox.value;
-    }
+    if (checkbox && checkbox.checked) result[checkbox.name] = checkbox.value;
     console.log(result);
   });
 }());
