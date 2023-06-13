@@ -1,0 +1,36 @@
+.taskWrapper, .task {
+  background-color: #ccc;
+  border-radius: 10px;
+  box-shadow: 0 0 14px 1px rgba(0, 0, 0, .2);
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.taskHeading, .task__heading {
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+.taskDescription, .task_description {
+  font-size: 16px;
+}
+
+.taskWrapperDelete {
+  margin-top: 7px;
+  margin-left: auto;
+  background-color: #e72e2e;
+  width: fit-content;
+  padding: 5px 10px;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: background-color .3s;
+}
+
+.taskWrapperDelete:hover {
+  background-color: #c42323;
+}
+
+.taskWrapperDelete i {
+  font-size: 20px;
+  color: #fff;
+}
