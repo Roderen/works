@@ -28,6 +28,14 @@ const View = {
         this.todoContainer = domEl
     },
 
+    resetForm(e) {
+        e.target.reset();
+    },
+
+    removeItem(e) {
+        e.target.closest('.col-6').remove();
+    },
+
 
     init(createTemplateFunc) {
         if(typeof createTemplateFunc !== 'function') return;

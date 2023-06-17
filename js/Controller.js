@@ -20,7 +20,7 @@ const Controller = {
         })
         const savedTodoItem = Model.postData(data);
         View.renderItem(savedTodoItem);
-        event.target.reset();
+        View.resetForm(event);
     },
 
     prerenderTodos() {
@@ -32,7 +32,7 @@ const Controller = {
         if (!e.target.closest('.taskWrapperDelete')) return;
         const getAttrDataId = Number(e.target.closest('.col-6').getAttribute('data-id'));
         Model.deleteData(getAttrDataId);
-        e.target.closest('.col-6').remove();
+        View.removeItem(e);
     },
 
     init(formSelector, blockSelector) {
