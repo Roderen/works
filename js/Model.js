@@ -1,49 +1,54 @@
 'use strict';
 
 const Model = {
-    storage: null,
-    dataKey: 'data_key',
-    currentId: 1,
+  storage: null,
+  dataKey: 'data_key',
+  currentId: 1,
 
-    // will get data from storage
-    getData() {
-        return JSON.parse(this.storage.getItem(this.dataKey)) || [];
-    },
+  // will get data from storage
+  getData() {
+    return JSON.parse(this.storage.getItem(this.dataKey)) || [];
+  },
 
-    // will get data by id from storage
-    getDataById(id) {
-        return this.getData().find(item => {
-            return item.id === id
-        })
-    },
+  getDataIter() {
+    const result = JSON.parse(this.storage.getItem(this.dataKey)) || [];
+    return result[Symbol.iterator]();
+  },
 
-    // will save data to storage
-    postData(data) {
-        const savedData = this.getData();
-        const dataToSave = {...data, id: this.currentId};
-        savedData.push(dataToSave);
-        this.storage.setItem(this.dataKey, JSON.stringify(savedData))
-        const savedItem = this.getDataById(this.currentId);
-        this.currentId += 1;
-        return savedItem;
-    },
+  // will get data by id from storage
+  getDataById(id) {
+    return this.getData().find(item => {
+      return item.id === id
+    })
+  },
 
-    deleteData(id) {
-        const dataList = Model.getData();
-        const dataId = dataList.findIndex(item => item.id === id);
-        dataList.splice(dataId, 1);
-        localStorage.setItem('todo-list-data', JSON.stringify(dataList));
-    },
+  // will save data to storage
+  postData(data) {
+    const savedData = this.getData();
+    const dataToSave = {...data, id: this.currentId};
+    savedData.push(dataToSave);
+    this.storage.setItem(this.dataKey, JSON.stringify(savedData))
+    const savedItem = this.getDataById(this.currentId);
+    this.currentId += 1;
+    return savedItem;
+  },
 
-    init(storage, dataKey) {
-        this.storage = storage
+  deleteData(id) {
+    const dataList = Model.getData();
+    const dataId = dataList.findIndex(item => item.id === id);
+    dataList.splice(dataId, 1);
+    localStorage.setItem('todo-list-data', JSON.stringify(dataList));
+  },
 
-        if(typeof dataKey === 'string') {
-            this.dataKey = dataKey
-        }
+  init(storage, dataKey) {
+    this.storage = storage
 
-        const savedData = this.getData();
-        if(!savedData.length) return
-        this.currentId = savedData.at(-1).id + 1
+    if (typeof dataKey === 'string') {
+      this.dataKey = dataKey
     }
+
+    const savedData = this.getData();
+    if (!savedData.length) return
+    this.currentId = savedData.at(-1).id + 1
+  }
 }
