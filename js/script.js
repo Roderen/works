@@ -41,32 +41,53 @@
       this.scores[this.currentLesson] = score;
     };
 
-    Student.prototype.summary = function () {
-      let resultScore = this.scores.reduce((accum, current) => accum + current);
-      let resultAttendance = this.attendance.reduce((accum, current) => accum + current);
-      resultScore = resultScore / this.scores.length;
-      resultAttendance = resultAttendance / this.attendance.length;
-      console.log(resultScore)
-      console.log(resultAttendance)
+    Student.prototype.scoreCalc = function () {
+      const result = this.scores.reduce((acc, item) => {
+        if (item !== null && typeof item === 'number') {
+          acc.score += item;
+          acc.attd += 1;
+          return acc;
+        }
+      }, {
+        score: 0,
+        attd: 0,
+      })
 
-      if (resultScore >= 9 && resultAttendance >= 0.9) return "Ути какой молодчинка!";
-      if (resultScore < 9 || resultAttendance < 0.9) return "Норм, но можно лучше";
-      if (resultScore < 9 && resultAttendance < 0.9) return "Редиска!";
+      return +(result.score / result.attd).toFixed(1);
+    }
+
+    Student.prototype.summaryCalc = function () {
+      const result = this.attendance.reduce((acc, item) => {
+        if (item) acc += 1;
+
+        return acc;
+      }, 0)
+
+      return result / this.currentLesson;
+    }
+
+    Student.prototype.summary = function () {
+      const score = this.scoreCalc();
+      const attd = this.summaryCalc();
+      console.log(score, attd);
+
+      if (score >= 9 && attd >= 0.9) return "Ути какой молодчинка!";
+      if (score < 9 || attd < 0.9) return "Норм, но можно лучше";
+      if (score < 9 && attd < 0.9) return "Редиска!";
     };
   }
 
   const res = new Student("Vova", "Shaitan", 1997);
   res.present(10);
-  res.present(9);
   res.present(5);
-  res.present(3);
-  res.present();
-  res.present(10);
-  res.present(10);
-  res.present(9);
-  res.present(9);
-  // res.mark(5, 9);
+  res.present(7);
+  res.absent();
+  res.absent();
+  res.absent();
+  res.absent();
+  res.absent();
+  res.absent();
+  res.absent();
 
-  console.log(res);
   console.log(res.summary());
 }());
