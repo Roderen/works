@@ -7,11 +7,13 @@
   ];
 
   const printGreetings = (arr) => {
+    let result = '';
     for (let {name, subject} of arr) {
-      const str = `Привет, ${name} John! Ты изучаешь предмет ${subject}`
-      console.log(str);
+      result += `Привет, ${name} John! Ты изучаешь предмет ${subject}\n`
     }
+
+    return result;
   }
 
-  printGreetings(students);
+  console.log(printGreetings(students));
 })();
