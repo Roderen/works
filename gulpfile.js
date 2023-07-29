@@ -1,18 +1,26 @@
 const gulp = require('gulp');
 const del = require('del');
+const uglify = require('gulp-uglify');
+const concat = require('gulp-concat');
 
-function cleanDistFolder() {
+const cleanDistFolder = () => {
   return del('dist');
 }
 
-function build() {
-  return gulp.src([
-    'app/index.html',
-    'app/assets/**/*',
-    'app/public/**/*',
-    '!app/assets/js/script.js',
-  ], {base: 'app'})
-      .pipe(gulp.dest('dist'));
+const minifyJs = () => {
+  return gulp.src('app/assets/js/script.js')
+      .pipe(concat('script.min.js'))
+      .pipe(uglify())
+      .pipe(gulp.dest('app/assets/js'))
 }
 
-exports.build = gulp.series(cleanDistFolder, build);
+const logFunc = (done) => {
+  console.log('Success');
+  done();
+}
+
+exports.cleanDistFolder = cleanDistFolder;
+exports.minifyJs = minifyJs;
+exports.logFunc = logFunc;
+
+exports.default = gulp.parallel(cleanDistFolder, minifyJs, logFunc);
