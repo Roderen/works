@@ -1,0 +1,82 @@
+.form-container {
+  max-width: 300px;
+  margin: 50px auto 0;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.form-container input {
+  padding: 4px 0;
+  background-color: #e3e2e2;
+  font-size: 16px;
+}
+
+.form-container button {
+  padding: 12px 0;
+  margin-top: 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.post-container {
+  max-width: 400px;
+  margin: 50px auto 0;
+}
+
+.post-info {
+  border: 1px solid #000;
+  border-radius: 7px;
+  padding: 20px;
+  font-family: sans-serif;
+}
+
+.post-info__title {
+  font-size: 22px;
+  line-height: 26px;
+}
+
+.post-info__body {
+  font-size: 14px;
+  line-height: 16px;
+  margin-top: 5px;
+}
+
+.open-comments {
+  margin-top: 10px;
+  width: 100%;
+  padding: 12px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.post-comments-list {
+  margin-top: 20px;
+  border: 1px solid red;
+  padding: 20px;
+}
+
+.post-comment {
+  margin-top: 10px;
+}
+
+.post-comment:first-child {
+  margin-top: 0;
+}
+
+.post-comment__name {
+  font-size: 16px;
+  line-height: 18px;
+}
+
+.post-comment__email {
+  font-size: 16px;
+  line-height: 18px;
+  margin-top: 5px;
+}
+
+.post-comment__body {
+  margin-top: 5px;
+  font-size: 14px;
+  line-height: 16px;
+}
