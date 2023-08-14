@@ -14,9 +14,9 @@ class Albums {
 
     this.renderPosts()
         .then(() => {
-          this.albumList.forEach(({title, userId}) => {
+          this.albumList.forEach(({title, id}) => {
             this.selector.innerHTML += `
-            <div class="albums__list-item col-6" data-user-id="${userId}">
+            <div class="albums__list-item col-6" data-user-id="${id}">
               <div class="p-3 border bg-light d-flex justify-content-between align-items-center">
                 <span>${title}</span>
                 <button type="button" class="btn btn-primary">Watch</button>
