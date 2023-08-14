@@ -9,14 +9,16 @@ class Photos {
     this.renderGallery();
   }
 
-  renderGallery() {
-    const data = JSON.parse(localStorage.getItem('albumPhotos'));
-    if (!data) return this.selector.innerHTML = `
-    <div class="not-found">
-      <h1>Gallery not found!</h1>
-      <a href="/index.html">Choose other gallery</a>
-    </div>
-    `;
+  async renderGallery() {
+    const data = await JSON.parse(localStorage.getItem('albumPhotos'));
+    if (data.length < 1) {
+      this.selector.innerHTML = `
+      <div class="not-found">
+        <h1>Gallery not found!</h1>
+        <a href="/index.html">Choose other gallery</a>
+      </div>
+      `;
+    }
     data.forEach(({title, url}) => {
       this.selector.innerHTML += `
       <div class="gallery__images-item">

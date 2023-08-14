@@ -25,6 +25,9 @@ class Albums {
             `
           })
         })
+        .catch(error => {
+          console.log(error)
+        })
 
     this.#eventHandlers();
   }
