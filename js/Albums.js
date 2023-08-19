@@ -3,58 +3,51 @@
 class Albums {
   QUERY_LINKS = {
     ALBUMS: 'https://jsonplaceholder.typicode.com/albums/',
-    PHOTOS: 'https://jsonplaceholder.typicode.com/photos/?albumId=',
   }
 
   selector = null;
-  albumList = null;
 
   constructor(selector) {
     this.selector = document.querySelector(selector);
 
     this.renderPosts()
-        .then(() => {
-          this.albumList.forEach(({title, id}) => {
-            this.selector.innerHTML += `
-            <div class="albums__list-item col-6" data-user-id="${id}">
-              <div class="p-3 border bg-light d-flex justify-content-between align-items-center">
-                <span>${title}</span>
-                <button type="button" class="btn btn-primary">Watch</button>
-              </div>
-            </div>
-            `
-          })
-        })
-        .catch(error => {
-          console.log(error)
-        })
-
     this.#eventHandlers();
   }
 
-  async renderPosts() {
-    const albums = fetch(this.QUERY_LINKS.ALBUMS);
-
+  async queryFetch(link) {
+    const albums = fetch(link);
     let data = await albums;
-    this.albumList = await data.json();
+    return await data.json();
+  }
+
+  async renderPosts() {
+    const data = await this.queryFetch(this.QUERY_LINKS.ALBUMS);
+    this.createTemplate(data);
   }
 
   // Events
   #eventHandlers() {
-    this.selector.addEventListener('click', (e) => this.viewGallery(e));
+    this.selector.addEventListener('click', this.viewGallery);
   }
 
-  async viewGallery(e) {
-    const target = e.target;
+  viewGallery(e) {
+    const { target } = e;
     if (!target.closest('.btn-primary')) return;
     const albumId = e.target.closest('.albums__list-item').getAttribute('data-user-id');
-    const photos = fetch(this.QUERY_LINKS.PHOTOS + albumId);
-    let data = await photos;
-    data = await data.json();
+    window.location.href = 'photos.html' + '?' + 'albumId=' + albumId;
+  }
 
-    if (data.length === 0) return;
-    localStorage.setItem('albumPhotos', JSON.stringify(data));
-    window.location.pathname = 'homeworks/photos.html';
+  createTemplate(data) {
+    data.forEach(({title, id}) => {
+      this.selector.innerHTML += `
+      <div class="albums__list-item col-6" data-user-id="${id}">
+        <div class="p-3 border bg-light d-flex justify-content-between align-items-center">
+          <span>${title}</span>
+          <button type="button" class="btn btn-primary">Watch</button>
+        </div>
+      </div>
+      `
+    })
   }
 }
 

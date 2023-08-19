@@ -1,24 +1,34 @@
 "use strict"
 
 class Photos {
+  QUERY_LINKS = {
+    PHOTOS: 'https://jsonplaceholder.typicode.com/photos/?albumId=',
+  }
+
   selector = null;
+  albumId = null;
 
   constructor(selector) {
     this.selector = document.querySelector(selector);
 
+    const params = new URLSearchParams(document.location.search);
+    this.albumId = params.get('albumId');
+
     this.renderGallery();
   }
 
+  async queryFetch(link) {
+    const albums = fetch(link);
+    let data = await albums;
+    return await data.json();
+  }
+
   async renderGallery() {
-    const data = await JSON.parse(localStorage.getItem('albumPhotos'));
-    if (data.length < 1) {
-      this.selector.innerHTML = `
-      <div class="not-found">
-        <h1>Gallery not found!</h1>
-        <a href="/index.html">Choose other gallery</a>
-      </div>
-      `;
-    }
+    const data = await this.queryFetch(this.QUERY_LINKS.PHOTOS + this.albumId);
+    this.createTemplate(data);
+  }
+
+  createTemplate(data) {
     data.forEach(({title, url}) => {
       this.selector.innerHTML += `
       <div class="gallery__images-item">
