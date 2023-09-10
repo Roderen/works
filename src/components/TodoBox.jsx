@@ -23,6 +23,7 @@ class TodoBox extends React.Component {
         value: this.state.inputValue,
       }, ...this.state.noteList]
     })
+    this.setState({inputValue: ''});
   }
 
   removeTask = (id) => {
