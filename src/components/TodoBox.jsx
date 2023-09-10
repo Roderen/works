@@ -16,19 +16,23 @@ class TodoBox extends React.Component {
   }
 
   createNote = (e) => {
+    const {inputValue, noteList} = this.state
+
     e.preventDefault();
     this.setState({
       noteList: [{
         id: uuidv4(),
-        value: this.state.inputValue,
-      }, ...this.state.noteList]
+        value: inputValue,
+      }, ...noteList]
     })
     this.setState({inputValue: ''});
   }
 
   removeTask = (id) => {
-    const result = this.state.noteList.findIndex(item => item.id === id);
-    const deletedNote = this.state.noteList.splice(result, 1);
+    const {noteList} = this.state
+
+    const result = noteList.findIndex(item => item.id === id);
+    const deletedNote = noteList.splice(result, 1);
     this.setState(deletedNote);
   }
 
