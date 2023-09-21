@@ -1,4 +1,4 @@
-# ДЗ 90. MarkdownEditor.jsx
+# ДЗ 92. MarkdownEditor.jsx - Функциональными компонентами
 
 <hr>
 
