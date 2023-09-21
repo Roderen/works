@@ -1,51 +1,40 @@
-import React from "react"
-import Item from "./Item";
+import React, {useState} from "react"
 import {v4 as uuidv4} from 'uuid';
 
-class TodoBox extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      inputValue: '',
-      noteList: [],
-    }
+import Item from "./Item";
+
+const TodoBox = () => {
+  const [inputValue, setInputValue] = useState('');
+  const [noteList, setNoteList] = useState([]);
+
+  const changeInputValue = (e) => {
+    setInputValue(e.target.value)
   }
 
-  changeInputValue = (e) => {
-    this.setState({inputValue: e.target.value})
-  }
-
-  createNote = (e) => {
-    const {inputValue, noteList} = this.state
-
+  const createNote = (e) => {
     e.preventDefault();
-    this.setState({
-      noteList: [{
-        id: uuidv4(),
-        value: inputValue,
-      }, ...noteList]
-    })
-    this.setState({inputValue: ''});
+    const newNote = {
+      id: uuidv4(),
+      value: inputValue,
+    }
+    setNoteList([newNote, ...noteList])
+    setInputValue('');
   }
 
-  removeTask = (id) => {
-    const {noteList} = this.state
-
-    const result = noteList.findIndex(item => item.id === id);
-    const deletedNote = noteList.splice(result, 1);
-    this.setState(deletedNote);
+  const removeTask = (id) => {
+    const result = noteList.filter(item => item.id !== id);
+    setNoteList(result);
   }
 
-  render() {
-    return <>
-      <div>
+  return (
+      <>
         <div className="mb-3">
-          <form className="d-flex" onSubmit={this.createNote}>
+          <form className="d-flex" onSubmit={createNote}>
             <div className="me-3">
               <input
                   type="text"
-                  value={this.state.inputValue}
-                  onChange={this.changeInputValue}
+                  value={inputValue}
+                  onChange={changeInputValue}
                   required
                   className="form-control" placeholder="I am going..."
               />
@@ -55,17 +44,16 @@ class TodoBox extends React.Component {
         </div>
 
         <div className="list-group">
-          {this.state.noteList.map(({id, value}) => (
+          {noteList.map(({id, value}) => (
               <Item
                   key={id}
                   task={value}
-                  onRemove={() => this.removeTask(id)}
+                  onRemove={() => removeTask(id)}
               />
           ))}
         </div>
-      </div>
-    </>
-  }
-}
+      </>
+  );
+};
 
 export default TodoBox;
