@@ -1,4 +1,4 @@
-# ДЗ 91. PostCatalog.jsx
+# ДЗ 94. PostCatalog.jsx - Функциональными компонентами
 
 <hr>
 
